@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Chat App</title>
+
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="col-md-12">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">Chat</a>
+        </div>
+
+        <ul class="nav navbar-nav navbar-right">
+          <p id="txtUserNameInfo" class="float-right"></p>
+          <a id="txtLogOut" href="javascript:void(0)" style="margin-left: 20px;">log out</a>
+        </ul>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
+
+
+    <div class="col-md-2 float-left" style="background-color: #d9d9d9; height: 100%;">
+      <h5 style="margin-top: 10px;">connected users: <span id="txtConnectedUserCount" class="badge badge-successs"></span></h5>
+      <hr>
+
+      <div class="container" style="height: 100vh; overflow-y: auto;">
+        <ul id="userList" class="list-group">
+
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-10 float-right">
+
+      <div id="MessagesContainer" class="col-md-12">
+
+      </div>
+
+      <!-- Typing indicator -->
+      <div style="min-height: 25px;">
+        <div id="typingIndicator" class="ticontainer messageGroup row">
+          <div class="tiblock">
+            <div class="tidot"></div>
+            <div class="tidot"></div>
+            <div class="tidot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-10" style="margin: 0 auto;">
+        <div id="txtMessage" contenteditable></div>
+
+        <div style="margin-top: 5px">
+          <div class="popover__wrapper">
+            <span class="btn popover__title"><i class="em em-smiley"></i></span>
+
+            <div class="popover__content">
+              <div class="container" style="margin: 0 auto; overflow-y: auto; max-height: 100px;">
+                <div class="row">
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-smiley"></em></span>
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-white_frowning_face"></em></span>
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em---1"></em></span>
+                </div>
+
+                <div class="row">
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-weary"></em></span>
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-tired_face"></em></span>
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em--1"></em></span>
+                </div>
+
+                <div class="row">
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-wink"></em></span>
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-angry"></em></span>
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-sunglasses"></em></span>
+                </div>
+
+                <div class="row">
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-confused"></em></span>
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-face_with_cowboy_hat"></em></span>
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-grinning"></em></span>
+                </div>
+
+                <div class="row">
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-heart_eyes"></em></span>
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-smirk"></em></span>
+                  <span class="btn btn-sm btn-default btnEmoji"><em class="em em-worried"></em></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <button id="btnSendMessage" class="btn btn-success" style="float: right;"><i class="fa fa-caret-right"></i></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- Welcome modal -->
+  <div id="WelcomeModal" class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title modal-heading">Welcome</h4>
+        </div>
+        <div class="modal-body">
+          <input id="txtUserName" class="form-control" type="text" placeholder="Enter username...">
+        </div>
+
+        <p id="txtValidation" class="text-danger" style="display: none; text-align: center"></p>
+        <div class="modal-footer">
+          <button id="btnJoinChat" type="button" class="btn btn-success">Join</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+
+<script src="script.js"></script>
