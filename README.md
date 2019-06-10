@@ -1,0 +1,1 @@
+Simple chat application built using JavaScript, Node.js & Socket.io
